@@ -1,3 +1,44 @@
-body{
-    background-color: darkblue;
+.container-fluid h1,
+.container-fluid h3,
+.container-fluid .input-group,
+.container-fluid li {
+  color: rgb(0, 0, 0);
+  position: relative;
+  z-index: 1;
+}
+
+ul {
+  list-style: none;
+  margin-top: 2rem;
+  border-top: 2px solid white;
+  position: relative;
+  z-index: 1;
+}
+
+li {
+  border-bottom: 1px solid white;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+
+.task-text {
+  z-index: 1;
+  color: black;
+}
+
+
+.custom-body {
+  height: 100vh;
+  background-color: papayawhip;
+  padding: 50px;
+  
+}
+
+.container-botones{
+  display: flex;
+  gap: 10px;
+  
 }
