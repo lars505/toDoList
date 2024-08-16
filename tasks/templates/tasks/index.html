@@ -4,7 +4,6 @@
 {% endblock title %}
 
 {% block body %}
-<!-- <div class="overlay"></div> -->
  <div class="custom-body">
     <div class="container-fluid">
         <div class="row justify-content-center">
@@ -13,11 +12,11 @@
                 <form action="{% url 'agregar' %}" class="d-grid gap-2" method="post">
                     {% csrf_token %}
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="tarea" placeholder="Tarea" value="{{tarea}}">
+                        {{form.tarea.as_widget}}
                         <button type="submit" class="btn btn-primary">Agregar</button>
                     </div>
                 </form>
-
+                
                 <div class="row">
                     <ul class="col-12">                        
                         {% for tarea_id, tarea in tareas.items %}
