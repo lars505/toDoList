@@ -1,6 +1,6 @@
 {% extends 'tasks/layout.html' %}
 {% block title %}
-    Lista de tareas
+    Editar Tarea
 {% endblock title %}
 
 {% block body %}
@@ -10,16 +10,17 @@
         <div class="row justify-content-center">
             <div class="col-12 text-center">
                 <h1>To Do List</h1>
-                <form action="{% url 'agregar' %}" class="d-grid gap-2" method="post">
+                <form action="" class="d-grid gap-2" method="post">
                     {% csrf_token %}
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="tarea" placeholder="Tarea" value="{{tarea}}">
+                        <input type="text" class="form-control" name="tarea" placeholder="Tarea" value="{{tarea.tarea}}">
                         <button type="submit" class="btn btn-primary">Agregar</button>
                     </div>
                 </form>
 
                 <div class="row">
-                    <ul class="col-12">                        
+                    <ul class="col-12">
+                                              
                         {% for tarea_id, tarea in tareas.items %}
                             <li class="d-flex justify-content-between align-items-center flex-wrap">
                                 <span class="task-text">{{tarea.tarea}}</span>
