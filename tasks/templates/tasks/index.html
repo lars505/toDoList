@@ -10,32 +10,27 @@
         <div class="row justify-content-center">
             <div class="col-12 text-center">
                 <h1>To Do List</h1>
-                <form class="d-grid gap-2" method="post">
+                <form action="{% url 'agregar' %}" class="d-grid gap-2" method="post">
                     {% csrf_token %}
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="tarea" placeholder="Tarea">
+                        <input type="text" class="form-control" name="tarea" placeholder="Tarea" value="{{tarea}}">
                         <button type="submit" class="btn btn-primary">Agregar</button>
                     </div>
                 </form>
 
                 <div class="row">
                     <ul class="col-12">
-                        <li class="d-flex justify-content-between align-items-center flex-wrap">
-                            <span class="task-text">Lavar ropa he ir a correr</span>
-                            <div class="container-botones">
-                                <a href="#" class="btn btn-sm btn-primary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" >Editar</a>
-                            
-                                <a href="#" class="btn btn-sm btn-danger" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" >Eliminar</a>
-                            </div>
-                        </li>
-                        <li class="d-flex justify-content-between align-items-center flex-wrap">
-                            <span class="task-text">Lavar</span>
-                            <div class="container-botones">
-                                <a href="#" class="btn btn-sm btn-primary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" >Editar</a>
-                            
-                                <a href="#" class="btn btn-sm btn-danger" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" >Eliminar</a>
-                            </div>
-                        </li>
+                        
+                        {% for tarea in tareas %}
+                            <li class="d-flex justify-content-between align-items-center flex-wrap">
+                                <span class="task-text">{{tarea}}</span>
+                                <div class="container-botones">
+                                    <a href="{% url 'editar' tarea %}" class="btn btn-sm btn-primary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" >Editar</a>
+                                    
+                                    <a href="{% url 'eliminar' tarea %}" class="btn btn-sm btn-danger" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" >Eliminar</a>
+                                </div>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
 
