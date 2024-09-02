@@ -13,20 +13,20 @@
                 <form action="{% url 'agregar' %}" class="d-grid gap-2" method="post">
                     {% csrf_token %}
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="tarea" placeholder="Tarea" value="{{tarea}}">
+                        <input type="text" class="form-control" name="tarea" placeholder="Tarea" value="">
                         <button type="submit" class="btn btn-primary">Agregar</button>
                     </div>
                 </form>
 
                 <div class="row">
                     <ul class="col-12">                        
-                        {% for tarea_id, tarea in tareas.items %}
+                        {% for tarea in tareas %}
                             <li class="d-flex justify-content-between align-items-center flex-wrap">
-                                <span class="task-text">{{tarea.tarea}}</span>
+                                <span class="task-text">{{tarea.nombre}}</span>
                                 <div class="container-botones">
-                                    <a href="{% url 'editar' tarea_id %}" class="btn btn-sm btn-primary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" >Editar</a>
+                                    <a href="{% url 'editar' tarea.pk %}" class="btn btn-sm btn-primary" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" >Editar</a>
                                     
-                                    <a href="{% url 'eliminar' tarea_id %}" class="btn btn-sm btn-danger" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" >Eliminar</a>
+                                    <a href="{%url 'eliminar' tarea.id %}" class="btn btn-sm btn-danger" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" >Eliminar</a>
                                 </div>
                             </li>
                         {% endfor %}

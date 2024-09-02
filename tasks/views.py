@@ -1,35 +1,39 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from .models import Task
 
 
 # Create your views here.
 # tareas = []
-tareas_dict = {}
+# tareas_dict = {}
 
 def index(request):
     context = {
-        'tareas': tareas_dict
+        'tareas': Task.objects.all() #select * from Tasks
     }
     return render(request, 'tasks/index.html', context)
 
 def agregar(request):
     if request.method == "POST":
-        tarea_id = len(tareas_dict) + 1
-        print(f'Esto es lo que contiene tarea id: {tarea_id}')
         tarea_text = request.POST.get("tarea")
-        tareas_dict[tarea_id] = { "tarea": tarea_text, "completado": False}
+        Task.objects.create(nombre=tarea_text) # Inser into Tasks () values()
         return redirect('index')
     return redirect('index')
 
 def eliminar(request, id):
-    if id in tareas_dict:
-        del tareas_dict[id]
+    tarea = Task.objects.filter(pk=id) #select * from tasks where id = id
+    print(tarea)
+    # if request.method == 'POST':
+    tarea.delete()
     return redirect('index')
 
+    # return redirect('index')
+
 def editar(request, id):
+    tarea = get_object_or_404(Task, id= id)
     if request.method == 'POST':
-        tarea = request.POST.get('tarea')
-        tareas_dict[id]['tarea']=tarea
+        tarea.nombre = request.POST.get('tarea')
+        tarea.save()
         return redirect("index")
-    return render(request,'tasks/editar.html', {'tarea_id': id, 'tarea': tareas_dict[id], 'tareas': tareas_dict} )
+    return render(request,'tasks/editar.html', {'tarea': tarea.nombre} )
     
