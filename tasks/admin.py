@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Task as tarea
+from .models import Task as tarea, CuatomUser
 
 class task_admin(admin.ModelAdmin):
     list_display = ["nombre", "created_at", "estado"]
@@ -8,3 +8,4 @@ class task_admin(admin.ModelAdmin):
     list_editable = ["estado"]
 # Register your models here.
 admin.site.register(tarea, task_admin)
+admin.site.register(CuatomUser)

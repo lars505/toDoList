@@ -1,0 +1,16 @@
+{% extends 'tasks/layout.html' %}
+{% block title %}
+    register
+{% endblock title %}
+
+{% block body %}
+
+<form action="{% url 'register' %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="username" id="0">
+    <input type="text" name="password" id="0">
+    <input type="text" name="password2" id="0">
+    <input type="submit" value="registrar">
+</form>
+
+{% endblock body %}

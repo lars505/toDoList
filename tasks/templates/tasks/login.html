@@ -1,0 +1,16 @@
+{% extends 'tasks/layout.html' %}
+{% block title %}
+    Login
+{% endblock title %}
+
+{% block body %}
+
+<form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="username" id="">
+    <input type="text" name="password" id="">
+    
+    <input type="submit" value="entrar">
+</form>
+
+{% endblock body %}
